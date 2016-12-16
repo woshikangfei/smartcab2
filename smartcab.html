@@ -11816,8 +11816,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import the visualization code</span>
-<span class="kn">import</span> <span class="nn">visuals</span> <span class="kn">as</span> <span class="nn">vs</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import the visualization code</span>
+<span class="kn">import</span> <span class="nn">visuals</span> <span class="k">as</span> <span class="nn">vs</span>
 
 <span class="c1"># Pretty display for notebooks</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -11906,11 +11906,11 @@ div#notebook {
 <ul>
 <li><em>在agent.py Python文件里，有多个可以设定的参数，例如：Environment函数创建时候，可以传递verbose，num_dummies，grid_size参数。其中；verbose设置为True来显示额外的输出模拟，num_dummies设置虚拟的出租车数量，默认是100，grid_size虚拟的十字路口(行、列),默认是(8、6)</em>
 <br></li>
-<li><p><em>在environment.py Python文件里，当代理程序执行一个行动时，调用Environment类的函数create_agent()</em></p>
+<li><p><em>在environment.py Python文件里，当代理程序执行一个行动时，调用Environment类的函数act(self, agent, action) 方法</em></p>
 </li>
 <li><p><em>在simulator.py Python 文件里，'render_text()'函数和'render()'函数之间的区别是render_text()代表输出到命令行，render()表示输出GUI窗口</em></p>
 </li>
-<li><em>在planner.py Python文件里，'next_waypoint() 函数会先考虑南北方向?</em>
+<li><em>在planner.py Python文件里，'next_waypoint() 函数会先考虑东西方向</em>
 **</li>
 </ul>
 
@@ -11951,7 +11951,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Load the &#39;sim_no-learning&#39; log file from the initial simulation results</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the &#39;sim_no-learning&#39; log file from the initial simulation results</span>
 <span class="n">vs</span><span class="o">.</span><span class="n">plot_trials</span><span class="p">(</span><span class="s1">&#39;sim_no-learning.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -13084,8 +13084,11 @@ WYXNzMzMzMxqxz1ZZmZmZmZmNeSQZWZmZmZmVkMOWWZmZmZmZjXkkGVmZmZmZlZDDllmZmZmZmY1
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>**回答：</p>
 <ul>
-<li><em>与安全性有关的特征有wappoint,inputs中的light,left,right,oncoming特征，wayponit表示出租车的目的地，input中的数据表示智能车在碰到红绿灯或者转弯时候的处理，与效率有关的是deadline，它代表了智能出租车在时间之内到达目的地还所需的剩余动作数目</em></li>
+<li><em>与安全性有关的特征有wappoint,inputs中的light,left,,oncoming特征，wayponit表示出租车的目的地，input中的数据表示智能车在碰到红绿灯或者转弯时候的处理，我选择left、light、oncoming建模</em></li>
 <li><em>对于deadline特征来说，不适合建模，因为它代表了效率</em>
+### 补充错误</li>
+<li><em>从空间效率上讲，我的理解是在建模时候增加deadline，会增加训练时长和次数，增加复杂度，因为目的是行动的每一步获得更多的利益,所以安全是最重要的,以避免事故</em></li>
+<li><em>从交通规则的角度理解，right是不需要的，因为right是随时可以右转的</em>
 **</li>
 </ul>
 
@@ -13193,7 +13196,7 @@ $$ \epsilon_{t+1} = \epsilon_{t} - 0.05, \hspace{10px}\textrm{for trial number }
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Load the &#39;sim_default-learning&#39; file from the default Q-Learning simulation</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the &#39;sim_default-learning&#39; file from the default Q-Learning simulation</span>
 <span class="n">vs</span><span class="o">.</span><span class="n">plot_trials</span><span class="p">(</span><span class="s1">&#39;sim_default-learning.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -14354,7 +14357,7 @@ $$ \epsilon = a^t, \textrm{for } 0 < a < 1 \hspace{50px}\epsilon = \frac{1}{t^2}
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Load the &#39;sim_improved-learning&#39; file from the improved Q-Learning simulation</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the &#39;sim_improved-learning&#39; file from the improved Q-Learning simulation</span>
 <span class="n">vs</span><span class="o">.</span><span class="n">plot_trials</span><span class="p">(</span><span class="s1">&#39;sim_improved-learning.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -16184,7 +16187,7 @@ MzOzBnKSZWZmZmZm1kD/H+P13o0JPj09AAAAAElFTkSuQmCC
 <li><em>安全性和可靠性评级有所改善,他们分别达到了A级别</em></li>
 <li><em>Q-Learner结果表明,我们的车成功地学会了驾驶;可靠性接近100%的水平。</em></li>
 <li><em>满意的可靠性。可靠的评级:A 。这意味着代理及时100%的到达目的地</em></li>
-<li><em>非常满意;安全等级:A 。这意味着代理运行没有交通违规,总是选择正确的行动。 </em>
+<li><em>非常满意;安全等级:A 。这意味着代理运行没有交通违规,但是不是非常好，代理程序有很少的轻微妨害交通的行为，如绿灯时未能移动。 </em>
 **</li>
 </ul>
 
@@ -16206,7 +16209,7 @@ MzOzBnKSZWZmZmZm1kD/H+P13o0JPj09AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#38382;&#39064;-8">&#38382;&#39064; 8<a class="anchor-link" href="#&#38382;&#39064;-8">&#182;</a></h3><p>给出几个关于最优策略是什么样子的例子（用你已定义的状态）。之后，查看<code>'sim_improved-learning.txt'</code>文本文件，看你的改进的Q-Learning算法的结果。<em>每个从模拟中纪录的状态，对于给定的状态，<strong>策略</strong>（得分最高的动作）是否正确？是否对于有些状态，有策略不同于预期的最优策略？</em>给出一个状态和记录的状态-动作的奖励，解释为什么正是个正确的策略。</p>
+<h3 id="&#38382;&#39064;-8">&#38382;&#39064; 8<a class="anchor-link" href="#&#38382;&#39064;-8">&#182;</a></h3><p>给出几个关于最优策略是什么样子的例子（用你已定义的状态）。之后，查看<code>'sim_improved-learning.txt'</code>文本文件，看你的改进的Q-Learning算法的结果。_每个从模拟中纪录的状态，对于给定的状态，<strong>策略</strong>（得分最高的动作）是否正确？是否对于有些状态，有策略不同于预期的最优策略？_给出一个状态和记录的状态-动作的奖励，解释为什么正是个正确的策略。</p>
 
 </div>
 </div>
@@ -16218,8 +16221,8 @@ MzOzBnKSZWZmZmZm1kD/H+P13o0JPj09AAAAAElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>**回答：</p>
 <ul>
-<li><em>每个从模拟中纪录的状态，对于给定的状态，策略（得分最高的动作）是正确的，因为,我们训练后,可靠性评级是100%</em>。。</li>
-<li><em>对于有些状态，有策略不同于预期的最优策略</em></li>
+<li><em>每个从模拟中纪录的状态，对于给定的状态，策略（得分最高的动作）是正确的，因为,我们训练后,可靠性评级是A</em>。。</li>
+<li><em>对于有些状态，有策略不同于预期的最优策略，每个从模拟中纪录的状态，对于给定的状态，策略几本正确，但是也有一些违规，比如绿灯未能移动</em></li>
 <li><em>当灯是绿色的,流动方向的车辆在十字路口Smartcab离开是预期的,选择的行动是正确的。</em>
 ** </li>
 </ul>

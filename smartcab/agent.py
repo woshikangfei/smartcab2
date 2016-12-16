@@ -127,7 +127,8 @@ class LearningAgent(Agent):
         #   Otherwise, choose an action with the highest Q-value for the current state
 
         if self.learning ==False:
-            action=self.valid_actions[random.randint(0,3)]
+            #action=self.valid_actions[random.randint(0,3)]
+			action = random.choice(self.valid_actions)
         else:
             if random.random() < self.epsilon:
                 action = random.choice(self.valid_actions[1:])
