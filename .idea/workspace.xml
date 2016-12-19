@@ -27,8 +27,8 @@
       <file leaf-file-name="agent.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/smartcab/agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6448802">
-              <caret line="137" column="56" selection-start-line="137" selection-start-column="56" selection-end-line="137" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.46187365">
+              <caret line="187" column="18" selection-start-line="187" selection-start-column="11" selection-end-line="187" selection-end-column="18" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -316,8 +316,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/smartcab/agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6448802">
-          <caret line="137" column="56" selection-start-line="137" selection-start-column="56" selection-end-line="137" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.46187365">
+          <caret line="187" column="18" selection-start-line="187" selection-start-column="11" selection-end-line="187" selection-end-column="18" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

@@ -118,7 +118,10 @@ class LearningAgent(Agent):
         self.state = state
         self.next_waypoint = self.planner.next_waypoint()
         action = None
-
+        maxQ = self.get_maxQ(state)
+        for key, value in self.Q[state].items():
+            if maxQ == value:
+                action = key
         ########### 
         ## TO DO ##
         ###########
@@ -132,13 +135,6 @@ class LearningAgent(Agent):
         else:
             if random.random() < self.epsilon:
                 action = random.choice(self.valid_actions[1:])
-            else:
-                maxQ = self.get_maxQ(state)
-                maxActions = [];
-                for key,values in self.Q[state].iteritems():
-                    if key == maxQ:
-                        maxActions.append(key)
-                action = maxActions[random.randint(0,len(maxActions)-1)]
         return action
 
 
@@ -191,8 +187,8 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    #agent = env.create_agent(LearningAgent,learning=True,alpha=0.5)
-    agent = env.create_agent(LearningAgent,learning=True)
+    agent = env.create_agent(LearningAgent,learning=True,alpha=0.5)
+    #agent = env.create_agent(LearningAgent,learning=True)
     
     ##############
     # Follow the driving agent
@@ -207,16 +203,16 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    #sim = Simulator(env,update_delay=0.01,log_metrics=True,display=False,optimized=True)
-    sim = Simulator(env,update_delay=0.01,log_metrics=True)
+    sim = Simulator(env,update_delay=0.01,log_metrics=True,display=False,optimized=True)
+    #sim = Simulator(env,update_delay=0.01,log_metrics=True)
     
     ##############
     # Run the simulator
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05 
     #   n_test     - discrete number of testing trials to perform, default is 0
-    #sim.run(n_test=100,tolerance=0.1)
-    sim.run(n_test=10)
+    sim.run(n_test=100,tolerance=0.1)
+    #sim.run(n_test=10)
 
 
 if __name__ == '__main__':
