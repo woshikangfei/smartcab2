@@ -72,7 +72,7 @@ class LearningAgent(Agent):
         #   If it is not, create a dictionary in the Q-table for the current 'state'
         #   For each action, set the Q-value for the state-action pair to 0
         
-        state = (waypoint,inputs['left'],inputs['light'],inputs['oncoming'])
+        state = (waypoint,inputs['light'],inputs['oncoming'],inputs['left'])
         if self.learning:
             if self.Q.get(state) is None:
                 state =self.createQ(state)
@@ -90,7 +90,9 @@ class LearningAgent(Agent):
         # Calculate the maximum Q-value of all actions for a given state
 
         maxQ = max(self.Q[state].values())
-
+        #tempQ = self.Q[state]
+        #maxKey = max(tempQ, key=lambda i: tempQ[i])
+        #maxQ = tempQ[maxKey]
         return maxQ 
 
 
@@ -107,6 +109,7 @@ class LearningAgent(Agent):
             if self.Q.get(state) is None:
                 self.Q[state] ={action: 0.0 for action in self.valid_actions}
 
+
         return
 
 
@@ -118,10 +121,8 @@ class LearningAgent(Agent):
         self.state = state
         self.next_waypoint = self.planner.next_waypoint()
         action = None
-        maxQ = self.get_maxQ(state)
-        for key, value in self.Q[state].items():
-            if maxQ == value:
-                action = key
+
+
         ########### 
         ## TO DO ##
         ###########
@@ -134,7 +135,14 @@ class LearningAgent(Agent):
 			action = random.choice(self.valid_actions)
         else:
             if random.random() < self.epsilon:
-                action = random.choice(self.valid_actions[1:])
+                action = random.choice(self.valid_actions)
+            else:
+                maxQ = self.get_maxQ(state)
+                for key, value in self.Q[state].items():
+                     if maxQ == value:
+                        action = random.choice([action for action in self.valid_actions if self.Q[state][action] == maxQ])
+
+        print action
         return action
 
 
@@ -203,7 +211,7 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env,update_delay=0.01,log_metrics=True,display=False,optimized=True)
+    sim = Simulator(env,update_delay=0.001,log_metrics=True,display=True,optimized=True)
     #sim = Simulator(env,update_delay=0.01,log_metrics=True)
     
     ##############
